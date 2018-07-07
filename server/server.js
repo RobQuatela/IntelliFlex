@@ -1,30 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const {User} = require('../models/user');
-const {getUser, listUsers} = require('../services/user-service');
+const userController = require('../controllers/users-controller');
+const muscleGroupsController = require('../controllers/muscle-groups-controller');
+const exercisesController = require('../controllers/exercises-controller');
+const logsController = require('../controllers/logs-controller');
 
 const app = express();
 
+//adding middleware to parse json from request
 app.use(bodyParser.json());
 
-app.post('/', (req, res) => {
-    const user = new User(req.body.name, req.body.email);
-    res.send(user);
-});
+// USER ROUTING //
+app.get('/api/users', userController.listUsers_GET);
+app.get('/api/users/:id', userController.getUser_GET);
 
-app.get('/api/users', (req, res) => {
-    res.send({result: listUsers()});
-})
+// BODYPART ROUTING //
+app.get('/api/bodyparts', muscleGroupsController.listMuscleGroups_GET);
+app.get('/api/bodyparts/:id', muscleGroupsController.getMuscleGroup_GET);
 
-app.get('/api/users/:id', (req, res) => {
-    res.send({result: getUser(req.params.id)});
-});
+// EXERCISE ROUTING //
+app.get('/api/exercises', exercisesController.listExercises_GET);
+app.get('/api/exercises/:id', exercisesController.getExercise_GET);
 
-const user = new User('rob', 'rob.quatela@gmail.com');
+// LOG ROUTING //
+app.get('/api/logs', logsController.listLogs_GET);
+app.get('/api/logs/:id', logsController.getLog_GET);
 
-console.log(user);
 
+// start the server on port 3000
 app.listen(3000, () => {
     console.log('listening on 3000');
 });

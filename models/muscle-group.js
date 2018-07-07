@@ -1,9 +1,7 @@
-const BodyPart = require('./body-part');
-
 class MuscleGroup {
-    constructor(name, bodyPart) {
+    constructor(id, name) {
+        this._id = id;
         this._name = name;
-        this._bodyPart = bodyPart;
     }
 };
 

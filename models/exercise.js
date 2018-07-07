@@ -1,3 +1,5 @@
+const MuscleGroup = require('./muscle-group');
+
 class Exercise {
     constructor(id, name, muscleGroup, url) {
         this._id = id;
