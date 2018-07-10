@@ -1,16 +1,21 @@
-const {users} = require('../mock-repository/users-data');
+//const {users} = require('../mock-repository/users-data');
+const userRepo = require('../repositories/users-repo');
+const {User} = require('../models/user');
 
 const getUser = (id) => {
-    const user = users.find(u => u._id === id);
-    console.log(user);
-    return user;
+    return userRepo.getUser(id);
 };
 
 const listUsers = () => {
-    return users;
+    return userRepo.listUsers();
+};
+
+const saveUser = (user) => {
+    return userRepo.saveUser(user);
 }
 
 module.exports = {
     getUser,
-    listUsers
+    listUsers,
+    saveUser
 };

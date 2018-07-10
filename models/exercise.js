@@ -1,13 +1,33 @@
-const MuscleGroup = require('./muscle-group');
+const {mongoose} = require('../server/database/mongoose');
+const {Schema} = require('mongoose');
 
-class Exercise {
-    constructor(id, name, muscleGroup, url) {
-        this._id = id;
-        this._name = name;
-        this._muscleGroup = muscleGroup;
-        this._url = url;
-    }
-};
+const Exercise = mongoose.model('Exercise', {
+    name: {
+        type: String,
+        required: true,
+    },
+    muscleGroup: {
+        type: Schema.Types.ObjectId,
+        ref: 'MuscleGroup',
+        required: true
+    },
+    url: {
+        type: String,
+        required: false
+    },
+    logs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Log'
+        }
+    ],
+    templateExercises: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'ExerciseTemplate'
+        }
+    ]
+});
 
 module.exports = {
     Exercise

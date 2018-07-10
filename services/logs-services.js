@@ -1,15 +1,19 @@
-const {logs} = require('../mock-repository/log-data');
+const logRepo = require('../repositories/logs-repo');
 
-listLogs = () => {
-    return logs;
+const listLogs = () => {
+    return logRepo.listLogs();
 };
 
-getLog = (id) => {
-    const log = logs.find(l => l._id === id);
-    return log;
+const getLog = (id) => {
+    return logRepo.getLog(id);
 };
+
+const saveLog = (log) => {
+    return logRepo.saveLog(log);
+}
 
 module.exports = {
     listLogs,
-    getLog
+    getLog,
+    saveLog
 };

@@ -1,15 +1,19 @@
-const {exercises} = require('../mock-repository/exercise-data');
+const exerciseRepo = require('../repositories/exercises-repo');
 
 const listExercises = () => {
-    return exercises;
+    return exerciseRepo.listExercises();
 };
 
 const getExercises = (id) => {
-    const exercise = exercises.find(e => e._id === id);
-    return exercise;
+    return exerciseRepo.getExercise(id);
+};
+
+const saveExercise = (exercise) => {
+    return exerciseRepo.saveExercise(exercise);
 };
 
 module.exports = {
     listExercises,
-    getExercises
+    getExercises,
+    saveExercise
 };

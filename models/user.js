@@ -1,12 +1,33 @@
-class User {
+const {Schema} = require('mongoose');
 
-    constructor(id, name, email, password) {
-        this._id = id;
-        this._name = name;
-        this._email = email;
-        this._password = password
-    }
-};
+const {mongoose} = require('../server/database/mongoose');
+
+const User = mongoose.model('User', {
+    name: {
+        type: String,
+        required: true,
+        minLength: 5,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        minLength: 5,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minLength: 8,
+        trim: true
+    },
+    logs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Log'
+        }
+    ]
+});
 
 module.exports = {
     User

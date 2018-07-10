@@ -1,17 +1,22 @@
-const {muscleGroups} = require('../mock-repository/muscle-group-data');
+const muscleGroupRepo = require('../repositories/muscle-groups-repo');
 
 // list all body parts
 const listMuscleGroups = () => {
-    return bodyParts;
+    return muscleGroupRepo.listMuscleGroups();
 };
 
 // retrieve bodypart by id
 const getMuscleGroup = (id) => {
-    const bodyPart = bodyParts.find(b => b._id === id);
-    return bodyPart;
+    return muscleGroupRepo.getMuscleGroup(id);
 };
+
+// save muscle group
+const saveMuscleGroup = (muscleGroup) => {
+    return muscleGroupRepo.saveMuscleGroup(muscleGroup);
+}
 
 module.exports = {
     getMuscleGroup,
-    listMuscleGroups
+    listMuscleGroups,
+    saveMuscleGroup
 };
