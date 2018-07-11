@@ -11,7 +11,7 @@ const listExercises_GET = (req, res) => {
 
 // GET get exercise by id
 const getExercise_GET = (req, res) => {
-    exercisesService.getExercises(res.params.id).then((doc) => {
+    exercisesService.getExercises(req.params.id).then((doc) => {
         res.send({
             result: doc
         });

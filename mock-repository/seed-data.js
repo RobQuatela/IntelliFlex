@@ -128,10 +128,30 @@ const removeAndseedData = () => {
             });
         });       
     });
-}
+};
+
+const listUsers = () => {
+    return User.find();
+};
+
+const listMuscleGroups = () => {
+    return MuscleGroup.find();
+};
+
+const listExercises = () => {
+    return Exercise.find();
+};
+
+const listLogs = () => {
+    return Log.find();
+};
 
 module.exports = {
-    removeAndseedData
+    removeAndseedData,
+    listUsers,
+    listMuscleGroups,
+    listExercises,
+    listLogs
 };
 
 
